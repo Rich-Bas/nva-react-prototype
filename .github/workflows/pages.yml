@@ -1,8 +1,11 @@
 name: Deploy to GitHub Pages
 
-# Manual for now: the repo is private, and Pages for private repos
-# needs a paid GitHub plan. Run it from the Actions tab to check.
+# Publishes the prototype every time something lands on main
+# (for example a merged pull request). Can also be run by hand
+# from the Actions tab.
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
