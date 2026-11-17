@@ -31,7 +31,7 @@ export function IS00Home() {
       <div className="relative z-[1] -mt-11 border-t border-border bg-background">
         <div className="ap-rise flex flex-col gap-3.5 px-5 pt-8 pb-5">
           <span className="ap-eyebrow">Rooted in care. Guided by science.</span>
-          <h1 className="h3 m-0 text-balance text-foreground">Care that grows with them.</h1>
+          <h1 className="h3 m-0 text-balance text-foreground">Care that evolves with your pet.</h1>
           <p className="m-0 text-base leading-6 text-pretty text-muted-foreground">
             One photo and a few taps. We'll shape everything around them, from the first visit on.
           </p>
