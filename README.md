@@ -28,4 +28,6 @@ Screens live at `#/is00` … `#/is09`.
 - Work on a branch, open a pull request. CI type-checks and builds every PR.
 - The design canvas is the starting point, not a live source: changes made here
   don't flow back to Claude Design.
-- `Deploy to GitHub Pages` runs by hand from the Actions tab.
+- Merging into `main` publishes the prototype to
+  https://rich-bas.github.io/nva-react-prototype/ (about a minute).
+  `Deploy to GitHub Pages` can also be run by hand from the Actions tab.
