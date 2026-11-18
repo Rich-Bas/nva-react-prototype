@@ -52,10 +52,22 @@ export function CompanionHome() {
     if (turns.length) end.current?.scrollIntoView({ block: "end", behavior: "smooth" })
   }, [turns.length, lastLength])
 
-  const ask = (text: string) => {
-    send(text)
+  const [chatProblem, setChatProblem] = useState("")
+  const lastAsked = useRef("")
+
+  // The bar empties on send (the question shows in the conversation). If the
+  // reply fails, the question comes back so it can be sent again.
+  const ask = async (text: string) => {
+    if (!text.trim() || busy) return
+    lastAsked.current = text.trim()
+    setChatProblem("")
     setDraft("")
     input.current?.focus()
+    const problem = await send(text)
+    if (problem) {
+      setChatProblem(problem)
+      setDraft((d) => d || text.trim())
+    }
   }
 
   // Mic: words appear in the bar as you speak, then send when you pause.
@@ -63,13 +75,18 @@ export function CompanionHome() {
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault()
-    ask(draft)
+    void ask(draft)
   }
 
   const onKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Tab" && !e.shiftKey && !draft) {
       e.preventDefault()
       setDraft(SUGGESTIONS[sug])
+    }
+    // Up arrow in an empty bar brings back the last question to edit or resend.
+    if (e.key === "ArrowUp" && !draft && lastAsked.current) {
+      e.preventDefault()
+      setDraft(lastAsked.current)
     }
   }
 
@@ -141,9 +158,9 @@ export function CompanionHome() {
             </Button>
           </form>
 
-          {voice.problem && (
+          {(chatProblem || voice.problem) && (
             <p role="status" className="-mt-4 m-0 text-sm text-warning">
-              {voice.problem}
+              {chatProblem || voice.problem}
             </p>
           )}
 
@@ -153,7 +170,7 @@ export function CompanionHome() {
                 key={label}
                 variant="outline"
                 disabled={busy}
-                onClick={() => ask(question)}
+                onClick={() => void ask(question)}
                 className={cn(
                   "h-10 border-0 font-semibold shadow-none",
                   featured ? "bg-accent-5 text-accent-5-foreground hover:bg-accent-5/85" : "bg-card",

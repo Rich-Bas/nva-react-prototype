@@ -41,10 +41,11 @@ export function useCompanionChat() {
   const [busy, setBusy] = useState(false)
   const abort = useRef<AbortController | null>(null)
 
+  /** Same contract as the Worker version: null when answered, else a message. */
   const send = useCallback(
-    async (text: string) => {
+    async (text: string): Promise<string | null> => {
       const question = text.trim().slice(0, MAX_CHARS)
-      if (!question || busy) return
+      if (!question || busy) return null
 
       const history = [...turns, { role: "user", content: question } as Turn].slice(-(MAX_TURNS - 1))
       while (history[0]?.role !== "user") history.shift()
@@ -60,8 +61,8 @@ export function useCompanionChat() {
       try {
         const sample = await sampleReady
         if (!sample) {
-          setReply("The AI chat only works when this page is opened on claude.ai. You can still try the mic and the suggestions.")
-          return
+          setTurns(history.slice(0, -1))
+          return "The AI chat only works when this page is opened on claude.ai."
         }
         const { text: reply } = await sample([{ role: "user", content: INSTRUCTIONS }, ...history], {
           modelTier: "quick",
@@ -70,11 +71,12 @@ export function useCompanionChat() {
           onText: ({ text }) => setReply(text),
         })
         setReply(reply)
+        return null
       } catch (err) {
         const e = err as SampleError
-        if (e?.code === "cancelled") return
-        const kept = e?.code === "refused" ? "" : (e?.text ?? "")
-        setReply(kept ? `${kept}\n\n(${explain(e?.code)})` : explain(e?.code))
+        if (e?.code === "cancelled") return null
+        setTurns(history.slice(0, -1))
+        return explain(e?.code)
       } finally {
         setBusy(false)
       }

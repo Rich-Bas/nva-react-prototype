@@ -16,10 +16,15 @@ export function useCompanionChat() {
   const [busy, setBusy] = useState(false)
   const abort = useRef<AbortController | null>(null)
 
+  /**
+   * Resolves null once answered (or cancelled), or with a message for the
+   * viewer if it failed. A failed exchange is taken out of the conversation,
+   * so the question can simply be sent again.
+   */
   const send = useCallback(
-    async (text: string) => {
+    async (text: string): Promise<string | null> => {
       const question = text.trim()
-      if (!question || busy) return
+      if (!question || busy) return null
 
       const history = [...turns, { role: "user", content: question } as Turn].slice(-(MAX_TURNS - 1))
       // Keep the conversation starting with a user turn after trimming.
@@ -50,10 +55,11 @@ export function useCompanionChat() {
           if (done) break
           append(value)
         }
+        return null
       } catch (err) {
-        if ((err as Error).name !== "AbortError") {
-          append("Sorry, I can't reach the companion right now. Please try again in a moment.")
-        }
+        if ((err as Error).name === "AbortError") return null
+        setTurns(history.slice(0, -1))
+        return "Sorry, I can't reach the companion right now. Your question is back in the bar, so you can send it again."
       } finally {
         setBusy(false)
       }
