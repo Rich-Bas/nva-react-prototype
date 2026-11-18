@@ -17,7 +17,7 @@ const STEPS: { icon: LucideIcon; title: string; sub: string }[] = [
   { icon: CalendarRange, title: "Puppy year mapped", sub: "4 milestones, starting with first puppy shots on Nov 17" },
   { icon: Hospital, title: "Held a time at Maple Grove", sub: "Tue 6:00 PM · 1.2 mi · fits your calendar" },
   { icon: CalendarCheck, title: "Added to your calendar", sub: "We'll release the hold if you don't confirm" },
-  { icon: House, title: "NVA Pet Resort Fremont", sub: "Puppy daycare intro, once shots are done" },
+  { icon: House, title: "ACME Pet Resort Fremont", sub: "Puppy daycare intro, once shots are done" },
   { icon: BellRing, title: "Reminders on", sub: "Flea and tick season starts in March here" },
 ]
 

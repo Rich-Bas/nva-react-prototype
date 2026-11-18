@@ -1,37 +1,20 @@
 import type { ReactNode } from "react"
-import { ArrowRight, ChevronLeft, Plus } from "lucide-react"
+import { ArrowRight, ChevronLeft, PawPrint, Plus } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 import { href, type ScreenId } from "./routes"
 import avatar from "./assets/avatar-realistic.jpg"
 
-/** NVA shield mark */
-export function NvaMark({ className, size = 16 }: { className?: string; size?: number }) {
-  return (
-    <svg
-      aria-hidden="true"
-      width={size}
-      height={(size * 30) / 26}
-      viewBox="0 0 26 30"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={2.3}
-      strokeLinejoin="round"
-      strokeLinecap="round"
-      className={cn("shrink-0", className)}
-    >
-      <path d="M2 2h22v13c0 6.5-4.8 10.8-11 13C6.8 25.8 2 21.5 2 15V2z" />
-      <path d="M6.5 16.5L13 5.5l6.5 11" />
-      <path d="M6.5 16.5v3M19.5 16.5v3" />
-    </svg>
-  )
+/** Placeholder brand mark (a paw) while the prototype is shared as ACME. */
+export function BrandMark({ className, size = 16 }: { className?: string; size?: number }) {
+  return <PawPrint aria-hidden="true" size={size} strokeWidth={2.2} className={cn("shrink-0", className)} />
 }
 
-export function NvaWordmark() {
+export function Wordmark() {
   return (
     <span className="flex items-center gap-2 text-sm font-semibold tracking-[.18em] text-primary-foreground">
-      <NvaMark />
-      NVA
+      <BrandMark />
+      ACME
     </span>
   )
 }
@@ -121,7 +104,7 @@ export function HeroBar({ back, center, right }: { back: ScreenId; center?: Reac
   return (
     <div className="relative z-[2] flex items-center justify-between px-5 pt-1">
       <BackButton to={back} />
-      {center ?? <NvaWordmark />}
+      {center ?? <Wordmark />}
       {right ?? <span className="w-11" />}
     </div>
   )

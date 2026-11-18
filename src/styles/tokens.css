@@ -403,7 +403,7 @@
   --emergency-subtle: var(--color-coral-50); /* Background for emergency alerts, banners and callouts. Text on it uses emergency. */
   --info: var(--color-cyan-800); /* Neutral information and tips. Icons, text and solid fills. */
   --info-foreground: var(--color-white); /* Text and icons on an info fill. */
-  --info-subtle: var(--color-brand-100); /* Background for info alerts and callouts (NVA accent blue). Text on it uses info. */
+  --info-subtle: var(--color-brand-100); /* Background for info alerts and callouts (accent blue). Text on it uses info. */
   --success: var(--color-sage-600); /* Confirmed, complete or healthy: booked, paid, vaccines up to date. Icons, text and solid fills. */
   --success-foreground: var(--color-white); /* Text and icons on a success fill. */
   --success-subtle: var(--color-sage-100); /* Background for success alerts, badges and callouts. Text on it uses success. */
@@ -414,7 +414,7 @@
   --warning-subtle: var(--color-orange-50); /* Background for warning alerts, badges and callouts. Text on it uses warning. */
   --wellness: var(--color-leaf-700); /* Preventive care, wellness plans and healthy-habit moments. Icons, text and solid fills. */
   --wellness-foreground: var(--color-white); /* Text and icons on a wellness fill. */
-  --wellness-subtle: var(--color-leaf-200); /* Background for wellness cards and callouts (NVA accent green). Text on it uses wellness. */
+  --wellness-subtle: var(--color-leaf-200); /* Background for wellness cards and callouts (accent green). Text on it uses wellness. */
   --accent-5: var(--color-amber-400); /* Accent color block 5 for call-outs, promos and highlight cards (currently amber). Decorative only, never status. Text on it uses accent-5-foreground. */
   --accent-5-foreground: var(--color-amber-950); /* Text and icons on accent-5. */
 }

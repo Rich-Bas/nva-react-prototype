@@ -1,7 +1,7 @@
-# NVA prototype · React
+# ACME prototype · React
 
 Flow 1e (photo-first intake, screens IS00–IS09) from the Claude Design canvas
-"NVA 2103 - Waffles 2.0", built with Vite, React and shadcn/ui.
+"Waffles 2.0", built with Vite, React and shadcn/ui.
 
 ## Run it
 

@@ -2,7 +2,7 @@ import type { CSSProperties } from "react"
 import { Bell, Camera, CloudRain, GraduationCap, House, Siren, Sprout, Video, type LucideIcon } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import { NvaMark, Screen } from "../parts"
+import { BrandMark, Screen } from "../parts"
 import avatar from "../assets/avatar-realistic.jpg"
 
 const AROUND: { icon: LucideIcon; title: string; sub: string; tile: CSSProperties }[] = [
@@ -19,8 +19,8 @@ export function IS09Home() {
         <section className="relative shrink-0 overflow-hidden bg-primary px-5 pt-12.5 pb-16 text-primary-foreground">
           <div className="relative flex items-center justify-between">
             <span className="flex items-center gap-2 text-sm font-semibold tracking-[.18em]">
-              <NvaMark />
-              NVA
+              <BrandMark />
+              ACME
             </span>
             <span className="flex gap-2">
               <Button variant="secondary" size="icon" aria-label="Notifications" className="size-11">
@@ -114,7 +114,7 @@ export function IS09Home() {
             </Button>
           </Card>
 
-          <span className="mt-1 text-xl font-semibold">Around NVA for Waffles</span>
+          <span className="mt-1 text-xl font-semibold">Around ACME for Waffles</span>
           <div className="grid grid-cols-2 gap-2.5">
             {AROUND.map(({ icon: Icon, title, sub, tile }) => (
               <Card key={title} className="ap-lift min-h-[126px] gap-2.5 rounded-xl border border-border p-3.5 ring-0">
@@ -142,12 +142,12 @@ export function IS09Home() {
 
       <a
         href="#ask-waffles"
-        aria-label="Ask NVA about Waffles"
+        aria-label="Ask ACME about Waffles"
         className="ap-lift absolute right-5 bottom-4 z-[3] flex h-14 items-center gap-2.5 rounded-full bg-primary pr-5.5 pl-2 text-[15px] font-semibold text-primary-foreground"
         style={{ boxShadow: "0 6px 18px -10px color-mix(in oklch, var(--foreground) 50%, transparent)" }}
       >
         <span className="flex size-[42px] items-center justify-center rounded-full bg-accent-3 text-foreground">
-          <NvaMark size={18} />
+          <BrandMark size={18} />
         </span>
         Ask about Waffles
       </a>
