@@ -11,6 +11,7 @@ import { IS06Costs } from "@/flow1e/screens/IS06Costs"
 import { IS07Help } from "@/flow1e/screens/IS07Help"
 import { IS08Building } from "@/flow1e/screens/IS08Building"
 import { IS09Home } from "@/flow1e/screens/IS09Home"
+import { CompanionHome } from "@/companion/CompanionHome"
 import "@/flow1e/flow1e.css"
 
 const VIEWS: Record<ScreenId, ComponentType> = {
@@ -28,6 +29,9 @@ const VIEWS: Record<ScreenId, ComponentType> = {
 
 export default function App() {
   const id = useScreen()
+
+  // The desktop companion page (live AI chat) sits outside the phone frame.
+  if (id === "companion") return <CompanionHome />
   const View = VIEWS[id]
 
   return (
@@ -53,6 +57,10 @@ export default function App() {
             {s.label}
           </a>
         ))}
+        <span className="ap-eyebrow mt-6 mb-2">Desktop</span>
+        <a href="#/companion" className="rounded-lg px-3 py-2 text-sm text-muted-foreground hover:bg-card hover:text-foreground">
+          Companion home · live AI chat
+        </a>
       </nav>
     </div>
   )

@@ -23,6 +23,36 @@ Screens live at `#/is00` … `#/is09`.
   profile card), `screens/` holds one file per screen, `flow1e.css` holds the
   surfaces and motion that aren't in the design system yet.
 
+## Companion chat (live AI)
+
+`#/companion` is the desktop companion home with a working chat bar. The page
+can't hold an AI key (anyone can read a static site's files), so the chat goes
+through a small Cloudflare Worker in `worker/` that holds the key, checks each
+request and streams Claude's reply back.
+
+- The companion's brief (tone, boundaries, Waffles' demo data) is in
+  `worker/src/companion.ts`.
+- Guard rails: only this site may call it, conversations are capped at 20
+  messages of 1,500 characters, replies at about 1,200 tokens. Set a monthly
+  spending limit on the Anthropic account as well.
+- Without a key the Worker answers in demo mode, so it can be tested for free.
+
+Run it locally (two terminals):
+
+```bash
+cd worker && npm install && npm run dev
+```
+
+```bash
+npm run dev
+```
+
+For real answers locally, create `worker/.dev.vars` containing
+`ANTHROPIC_API_KEY=...` (it's git-ignored). To go live: `cd worker`,
+`npx wrangler login`, `npx wrangler secret put ANTHROPIC_API_KEY`,
+`npm run deploy`, then add the Worker's address as the repo variable
+`COMPANION_URL` and re-run the Pages deploy.
+
 ## Workflow
 
 - Work on a branch, open a pull request. CI type-checks and builds every PR.
