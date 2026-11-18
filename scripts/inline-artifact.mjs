@@ -6,7 +6,11 @@ import { join } from "node:path"
 
 const dir = "dist-artifact"
 const html = readFileSync(join(dir, "artifact.html"), "utf8")
-const css = [...html.matchAll(/<link rel="stylesheet"[^>]*href="\/([^"]+)"[^>]*>/g)].map((m) => readFileSync(join(dir, m[1]), "utf8"))
+// claude.ai marks the page data-theme="dark" for dark-mode viewers; the
+// prototype is light-only, so the tokens' dark set is switched off.
+const css = [...html.matchAll(/<link rel="stylesheet"[^>]*href="\/([^"]+)"[^>]*>/g)].map((m) =>
+  readFileSync(join(dir, m[1]), "utf8").replace(/\[data-theme=["']?dark["']?\]/g, "[data-acme-unused-dark]"),
+)
 const js = [...html.matchAll(/<script type="module"[^>]*src="\/([^"]+)"[^>]*><\/script>/g)].map((m) => readFileSync(join(dir, m[1]), "utf8"))
 const title = html.match(/<title>.*?<\/title>/)[0]
 
