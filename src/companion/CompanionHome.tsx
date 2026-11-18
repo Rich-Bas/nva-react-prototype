@@ -17,6 +17,7 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { BrandMark } from "@/flow1e/parts"
 import { useCompanionChat, type Turn } from "./useCompanionChat"
+import { useSpeechInput } from "./useSpeechInput"
 
 /** Rotating placeholder suggestions; Tab drops the current one into the bar. */
 const SUGGESTIONS = [
@@ -56,6 +57,9 @@ export function CompanionHome() {
     setDraft("")
     input.current?.focus()
   }
+
+  // Mic: words appear in the bar as you speak, then send when you pause.
+  const voice = useSpeechInput({ onText: setDraft, onDone: ask })
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault()
@@ -100,7 +104,12 @@ export function CompanionHome() {
                 maxLength={1500}
                 className="h-12 w-full min-w-0 bg-transparent text-lg outline-none"
               />
-              {!draft && (
+              {!draft && voice.listening && (
+                <span aria-hidden="true" className="pointer-events-none absolute inset-0 flex items-center text-lg text-primary">
+                  Listening…
+                </span>
+              )}
+              {!draft && !voice.listening && (
                 <span aria-hidden="true" className="pointer-events-none absolute inset-0 flex items-center gap-2.5 overflow-hidden">
                   <span key={sug} className="ap-rise truncate text-lg text-muted-foreground">
                     {SUGGESTIONS[sug]}
@@ -109,13 +118,34 @@ export function CompanionHome() {
                 </span>
               )}
             </div>
-            <Button type="button" variant="ghost" size="icon" aria-label="Voice input (not in this demo)" className="size-12 bg-muted">
-              <Mic className="size-5" />
-            </Button>
+            {voice.supported && (
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon"
+                aria-label={voice.listening ? "Stop listening" : "Ask by voice"}
+                aria-pressed={voice.listening}
+                disabled={busy}
+                onClick={voice.listening ? voice.stop : voice.start}
+                className={cn(
+                  "relative size-12",
+                  voice.listening ? "bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground" : "bg-muted",
+                )}
+              >
+                {voice.listening && <span aria-hidden="true" className="absolute inset-0 animate-ping rounded-full bg-primary/30" />}
+                <Mic className="relative size-5" />
+              </Button>
+            )}
             <Button type="submit" size="icon" aria-label="Send" disabled={busy || !draft.trim()} className="size-14">
               <ArrowUp className="size-6" />
             </Button>
           </form>
+
+          {voice.problem && (
+            <p role="status" className="-mt-4 m-0 text-sm text-warning">
+              {voice.problem}
+            </p>
+          )}
 
           <div aria-label="Suggested questions" className="flex flex-wrap gap-2.5">
             {PILLS.map(({ icon: Icon, label, ask: question, featured }) => (
