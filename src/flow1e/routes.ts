@@ -15,16 +15,21 @@ export const SCREENS = [
 
 export type ScreenId = (typeof SCREENS)[number]["id"]
 
+/** Every page: the phone screens, the companion test page and the desktop pages. */
+export type PageId = ScreenId | "companion" | "desktop"
+
 export const href = (id: ScreenId) => `#/${id}`
 
-function read(): ScreenId {
+function read(): PageId {
   const id = window.location.hash.replace(/^#\/?/, "")
+  if (id === "companion") return id
+  if (id === "desktop" || id.startsWith("desktop/") || id.startsWith("desktop?")) return "desktop"
   return (SCREENS.find((s) => s.id === id)?.id ?? "is00") as ScreenId
 }
 
 /** Tiny hash router: each screen lives at #/is00 … #/is09. */
-export function useScreen(): ScreenId {
-  const [id, setId] = useState<ScreenId>(read)
+export function useScreen(): PageId {
+  const [id, setId] = useState<PageId>(read)
   useEffect(() => {
     const onChange = () => {
       setId(read())

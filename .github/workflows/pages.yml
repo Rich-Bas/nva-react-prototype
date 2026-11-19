@@ -28,6 +28,9 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npx tsc -b && npx vite build --base=/${{ github.event.repository.name }}/
+        env:
+          # The companion chat Worker's address (repo Settings → Variables).
+          VITE_COMPANION_URL: ${{ vars.COMPANION_URL }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

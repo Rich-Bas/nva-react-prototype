@@ -37,7 +37,7 @@ export function IS04Avatar({ look = "realistic" }: { look?: keyof typeof LOOKS }
             <span className="ap-float block">
               <img
                 src={avatar.src}
-                alt={`Waffles' NVA avatar: ${avatar.alt} with a ${collar.toLowerCase()} collar`}
+                alt={`Waffles' ACME avatar: ${avatar.alt} with a ${collar.toLowerCase()} collar`}
                 width={196}
                 height={196}
                 className="block size-[196px] rounded-full object-cover"
@@ -63,7 +63,7 @@ export function IS04Avatar({ look = "realistic" }: { look?: keyof typeof LOOKS }
         }
       >
         <Heading
-          eyebrow="Your pet, NVA edition"
+          eyebrow="Your pet, ACME edition"
           title="Here's Waffles."
           body="Made from her photo. You'll see her on her profile and in reminders."
         />

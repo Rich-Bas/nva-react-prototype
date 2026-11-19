@@ -1,5 +1,5 @@
 {
-  "name": "nva-react-test",
+  "name": "acme-prototype",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "oxlint",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build:artifact": "vite build -c vite.artifact.config.ts && node scripts/inline-artifact.mjs artifact.html companion.html",
+    "build:artifact:desktop": "ARTIFACT=desktop vite build -c vite.artifact.config.ts && node scripts/inline-artifact.mjs desktop-artifact.html desktop.html"
   },
   "dependencies": {
     "@base-ui/react": "^1.9.0",

@@ -1,6 +1,6 @@
 import { Menu } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { NextButton, NvaMark, Screen } from "../parts"
+import { NextButton, BrandMark, Screen } from "../parts"
 import heroImg from "../assets/hero-team-dog.webp"
 
 export function IS00Home() {
@@ -9,7 +9,7 @@ export function IS00Home() {
       <div className="relative min-h-0 flex-1 overflow-hidden">
         <img
           src={heroImg}
-          alt="A smiling NVA team member holds a scruffy gray dog on a city sidewalk"
+          alt="A smiling ACME team member holds a scruffy gray dog on a city sidewalk"
           className="absolute inset-0 size-full object-cover object-[60%_30%]"
         />
         <div
@@ -19,8 +19,8 @@ export function IS00Home() {
         />
         <div className="absolute top-[50px] right-5 left-5 flex items-center justify-between text-primary-foreground">
           <span className="flex items-center gap-2.5 text-[15px] font-semibold tracking-[.2em]">
-            <NvaMark size={22} />
-            NVA
+            <BrandMark size={22} />
+            ACME
           </span>
           <Button variant="secondary" size="icon" aria-label="Menu" className="size-11">
             <Menu className="size-[18px]" />
@@ -36,7 +36,7 @@ export function IS00Home() {
             One photo and a few taps. We'll shape everything around them, from the first visit on.
           </p>
           <div className="mt-1.5">
-            <NextButton to="is01">Get started with NVA</NextButton>
+            <NextButton to="is01">Get started with ACME</NextButton>
           </div>
           <a href="#signin" className="flex h-11 items-center justify-center text-sm font-semibold text-primary">
             Sign in to your account
