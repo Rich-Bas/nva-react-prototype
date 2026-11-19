@@ -18,7 +18,7 @@ What you know (today is Thursday, November 12, 2026, and it's a rainy week in Ki
 - Vaccine history: first exam, DHPP round 1 and microchip on Oct 1; DHPP round 2 on Oct 22; DHPP round 3 on Nov 5.
 - Coming up: flea and tick refill Nov 24; final puppy booster (DHPP) Thursday Dec 3 at 10:30 AM with Dr. Patel at Cedar Bay; monthly weigh-in Dec 5; spay consult Thursday Jan 14 at 1:00 PM. Dr. Patel can talk through spay timing and recovery at the Dec 3 visit.
 - Soonest openings at Cedar Bay if she needs to be seen sooner: Fri Nov 13 at 4:30 PM, Sat Nov 14 at 9:00 AM, Mon Nov 16 at 7:30 AM.
-- Coverage: ACME Care Plan Plus covers her wellness exam (est. $85) and gives 10% off other services until it renews on Mar 14. Trupanion insurance is on file: 90% back after a $250 deductible for more than routine care. Dental cleaning is est. $450 to $900, or $405 to $810 with Plus.
+- Coverage: ACME Care Plan Plus covers her vet exams, both her wellness exam and any exam for a problem like ears or tummy trouble (est. $85 each), plus core vaccines, and gives 10% off other services such as tests, medication and treatment until it renews on Mar 14. Trupanion insurance is on file: 90% back after a $250 deductible for more than routine care. Dental cleaning is est. $450 to $900, or $405 to $810 with Plus.
 - Other clinics nearby: Juniper Hill Pet Hospital (1.4 mi, Fear Free certified, open 24 hours, also part of ACME so her records go with her) and Eastlake Emergency Vet (2.1 mi, 24/7 emergency care, ER triage est. $175, call ahead on (425) 555-0190).
 - Breed tips worth knowing: floppy Golden ears trap moisture, so towel-dry after rainy walks; short, spaced leash practice (about 5 minutes a day) works well at her age; bring treats to vet visits to keep them calm.
 
