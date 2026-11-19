@@ -12,6 +12,7 @@
     "build:artifact:desktop": "ARTIFACT=desktop vite build -c vite.artifact.config.ts && node scripts/inline-artifact.mjs desktop-artifact.html desktop.html"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^1.10.0",
     "@base-ui/react": "^1.9.0",
     "@tailwindcss/vite": "^4.3.5",
     "class-variance-authority": "^0.7.1",
