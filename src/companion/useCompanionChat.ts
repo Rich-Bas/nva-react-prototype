@@ -11,8 +11,8 @@ const CHAT_URL = import.meta.env.VITE_COMPANION_URL || "/api/chat"
 /** Matches the Worker's limit, so a long demo restarts instead of failing. */
 const MAX_TURNS = 20
 
-export function useCompanionChat() {
-  const [turns, setTurns] = useState<Turn[]>([])
+export function useCompanionChat(initial: Turn[] = []) {
+  const [turns, setTurns] = useState<Turn[]>(initial)
   const [busy, setBusy] = useState(false)
   const abort = useRef<AbortController | null>(null)
 
