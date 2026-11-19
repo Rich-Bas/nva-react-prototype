@@ -36,8 +36,8 @@ function explain(code: string): string {
   }
 }
 
-export function useCompanionChat() {
-  const [turns, setTurns] = useState<Turn[]>([])
+export function useCompanionChat(initial: Turn[] = []) {
+  const [turns, setTurns] = useState<Turn[]>(initial)
   const [busy, setBusy] = useState(false)
   const abort = useRef<AbortController | null>(null)
 

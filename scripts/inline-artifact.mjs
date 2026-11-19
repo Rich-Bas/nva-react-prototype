@@ -4,8 +4,10 @@
 import { readFileSync, writeFileSync } from "node:fs"
 import { join } from "node:path"
 
+// Usage: node scripts/inline-artifact.mjs [entry.html] [out.html]
+const [entry = "artifact.html", out = "companion.html"] = process.argv.slice(2)
 const dir = "dist-artifact"
-const html = readFileSync(join(dir, "artifact.html"), "utf8")
+const html = readFileSync(join(dir, entry), "utf8")
 // claude.ai marks the page data-theme="dark" for dark-mode viewers; the
 // prototype is light-only, so the tokens' dark set is switched off.
 const css = [...html.matchAll(/<link rel="stylesheet"[^>]*href="\/([^"]+)"[^>]*>/g)].map((m) =>
@@ -23,5 +25,5 @@ const page = `${title}
 <div id="root"></div>
 <script type="module">${safe(js.join("\n"))}</script>
 `
-writeFileSync(join(dir, "companion.html"), page)
-console.log(`Wrote ${join(dir, "companion.html")} (${(page.length / 1024).toFixed(0)} KB)`)
+writeFileSync(join(dir, out), page)
+console.log(`Wrote ${join(dir, out)} (${(page.length / 1024).toFixed(0)} KB)`)
